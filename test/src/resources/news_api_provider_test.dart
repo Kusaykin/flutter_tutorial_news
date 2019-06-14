@@ -6,7 +6,7 @@ import 'package:http/testing.dart';
 
 void main() {
 
-  test('FetchTopIds return a kist of ids', () async {
+  test('FetchTopIds return a list of ids', () async {
     // setup of test case
     final newsApi = NewsApiProvider();
     newsApi.client = MockClient((request) async {

@@ -18,7 +18,7 @@ class Repository {
   // TODO: implement fetchTopIds in NewsDbProvider
   // Iterate over sources when dbprovider
   // get fetchTopIds implemented
-  Future<List<int>>fetchTopIds(){
+  Future<List<int>> fetchTopIds(){
     return sources[1].fetchTopIds();
   }
 
