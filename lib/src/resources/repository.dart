@@ -32,10 +32,14 @@ class Repository {
         break;
     }
 
-    caches.forEach((cache) => cache.addItem(item));
-    // for(var cache in caches)
-    //   cache.addItem(item);
-
+//    caches.forEach((cache) => {
+//      if(cache != (source) as Cache)
+//        cache.addItem(item)
+//    });
+     for(var cache in caches) {
+       if(cache != (source) as Cache)
+         cache.addItem(item);
+     }
     return item;
   }
 }
