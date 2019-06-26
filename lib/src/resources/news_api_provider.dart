@@ -12,7 +12,7 @@ class NewsApiProvider implements Source {
 
   Future<List<int>> fetchTopIds() async {
     final Response response = await client.get('$_root/topstories.json');
-    final List ids = json.decode(response.body);
+    final ids = json.decode(response.body);
 
     return ids.cast<int>();
   }

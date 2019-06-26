@@ -15,7 +15,6 @@ class Repository {
     newsDbProvider,
   ];
 
-  // TODO: implement fetchTopIds in NewsDbProvider
   // Iterate over sources when dbprovider
   // get fetchTopIds implemented
   Future<List<int>> fetchTopIds(){
@@ -25,22 +24,31 @@ class Repository {
   Future<ItemModel> fetchItem(int id) async {
     ItemModel item;
     Source source;
-  
-    for (source in sources) {
-      item = await source.fetchItem(id);
-      if (item != null)
-        break;
-    }
+
+    item = await NewsApiProvider().fetchItem(id);
+
+//    for (source in sources) {
+//      item = await source.fetchItem(id);
+//      if (item != null)
+//        break;
+//    }
 
 //    caches.forEach((cache) => {
 //      if(cache != (source) as Cache)
 //        cache.addItem(item)
 //    });
      for(var cache in caches) {
-       if(cache != (source) as Cache)
+       if(cache != (source) as Cache) {
          cache.addItem(item);
+       }
      }
     return item;
+  }
+
+  clearCache() async {
+    for(var cache in caches){
+      await cache.clear();
+    }
   }
 }
 
@@ -51,4 +59,5 @@ abstract class Source {
 
 abstract class Cache {
   Future<int> addItem(ItemModel item);
+  Future<int> clear();
 }
