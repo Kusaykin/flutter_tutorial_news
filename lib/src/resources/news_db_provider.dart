@@ -17,7 +17,7 @@ class NewsDbProvider implements Source, Cache {
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'items.db');
+    final path = join(documentsDirectory.path, 'items6.db');
     db = await openDatabase(
       path,
       version: 1,
@@ -59,12 +59,16 @@ class NewsDbProvider implements Source, Cache {
     return null;    
   }
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMapForDb());
+    return db.insert("Items", item.toMapForDb(), conflictAlgorithm: ConflictAlgorithm.ignore);
   }
 
   // TODO: implement fetchTopIds
   Future<List<int>> fetchTopIds() {
     return null;
+  }
+
+  Future<int> clear() {
+    return db.delete('Items');
   }
   
 }

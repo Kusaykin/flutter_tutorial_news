@@ -32,11 +32,19 @@ class Repository {
         break;
     }
 
-    caches.forEach((cache) => cache.addItem(item));
-    // for(var cache in caches)
-    //   cache.addItem(item);
-
+   caches.forEach((cache) => cache.addItem(item));
+//     for(var cache in caches) {
+//       if (cache != (source) as Cache)  //check for no double insert or add parameter conflictAlgorithm: ConflictAlgorithm.ignore in db.insert (news_db_provider.dart)
+//         cache.addItem(item);
+//     }
     return item;
+  }
+
+  clearCash() async {
+    for(var cache in caches) {
+      await cache.clear();
+    }
+
   }
 }
 
@@ -47,4 +55,5 @@ abstract class Source {
 
 abstract class Cache {
   Future<int> addItem(ItemModel item);
+  Future<int> clear();
 }
