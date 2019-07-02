@@ -24,7 +24,7 @@ class Repository {
 
   Future<ItemModel> fetchItem(int id) async {
     ItemModel item;
-    Source source;
+    var source;
   
     for (source in sources) {
       item = await source.fetchItem(id);
@@ -32,11 +32,12 @@ class Repository {
         break;
     }
 
-   caches.forEach((cache) => cache.addItem(item));
-//     for(var cache in caches) {
-//       if (cache != (source) as Cache)  //check for no double insert or add parameter conflictAlgorithm: ConflictAlgorithm.ignore in db.insert (news_db_provider.dart)
-//         cache.addItem(item);
-//     }
+  //  caches.forEach((cache) => cache.addItem(item));
+    for (var cache in caches) {
+      if (cache != source) {
+        cache.addItem(item);
+      }
+    }
     return item;
   }
 
