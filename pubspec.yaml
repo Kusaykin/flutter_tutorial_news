@@ -24,10 +24,13 @@ dependencies:
   path_provider: ^0.4.1
   rxdart: ^0.18.1  
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   # test: ^1.6.4
+
+  test: ^1.5.1+1
 
 
 # For information on the generic Dart part of this file, see the

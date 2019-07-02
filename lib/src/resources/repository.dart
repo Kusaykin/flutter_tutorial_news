@@ -18,7 +18,7 @@ class Repository {
   // TODO: implement fetchTopIds in NewsDbProvider
   // Iterate over sources when dbprovider
   // get fetchTopIds implemented
-  Future<List<int>>fetchTopIds(){
+  Future<List<int>> fetchTopIds(){
     return sources[1].fetchTopIds();
   }
 
@@ -37,6 +37,7 @@ class Repository {
 //       if (cache != (source) as Cache)  //check for no double insert or add parameter conflictAlgorithm: ConflictAlgorithm.ignore in db.insert (news_db_provider.dart)
 //         cache.addItem(item);
 //     }
+
     return item;
   }
 

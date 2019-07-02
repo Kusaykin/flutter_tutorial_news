@@ -4,7 +4,8 @@ import '../models/item_model.dart';
 import '../blocs/stories_provider.dart';
 import 'dart:async';
 
-class NewsListTile extends StatelessWidget{
+class NewsListTile extends StatelessWidget {
+
   final int itemId;
 
   NewsListTile({this.itemId});
@@ -15,26 +16,27 @@ class NewsListTile extends StatelessWidget{
 
     return StreamBuilder(
       stream: bloc.items,
-      builder: (BuildContext context, AsyncSnapshot<Map<int, Future<ItemModel>>> snapshot) {
-        if(!snapshot.hasData) {
+      builder: (BuildContext context,
+          AsyncSnapshot<Map<int, Future<ItemModel>>> snapshot) {
+        if (!snapshot.hasData) {
           return LoadingContainer();
         }
 
         return FutureBuilder(
-          future: snapshot.data[itemId],
-          builder: (BuildContext context, AsyncSnapshot<ItemModel> itemSnapshot) {
-            if(!itemSnapshot.hasData) {
-              return LoadingContainer();
-            }
+            future: snapshot.data[itemId],
+            builder: (BuildContext context,
+                AsyncSnapshot<ItemModel> itemSnapshot) {
+              if (!itemSnapshot.hasData) {
+                return LoadingContainer();
+              }
 
-            return builderTile(itemSnapshot.data);
-          }
+              return builderTile(itemSnapshot.data);
+            }
         );
       },);
   }
 
   Widget builderTile(ItemModel item) {
-
     return Column(
       children: <Widget>[
         ListTile(
@@ -54,3 +56,7 @@ class NewsListTile extends StatelessWidget{
     );
   }
 }
+
+
+
+

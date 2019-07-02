@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart' show Client, Response;
 import '../models/item_model.dart';
 import 'dart:async';
 import 'repository.dart';
@@ -11,8 +11,8 @@ class NewsApiProvider implements Source {
   Client client = Client();
 
   Future<List<int>> fetchTopIds() async {
-    final response = await client.get('$_root/topstories.json');
-    final ids = json.decode(response.body);
+    final Response response = await client.get('$_root/topstories.json');
+    final List ids = json.decode(response.body);
 
     return ids.cast<int>();
   }
