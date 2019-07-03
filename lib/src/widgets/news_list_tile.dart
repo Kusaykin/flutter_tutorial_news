@@ -27,17 +27,20 @@ class NewsListTile extends StatelessWidget{
               return LoadingContainer();
             }
 
-            return builderTile(itemSnapshot.data);
+            return builderTile(context, itemSnapshot.data);
           }
         );
       },);
   }
 
-  Widget builderTile(ItemModel item) {
+  Widget builderTile(BuildContext context, ItemModel item) {
 
     return Column(
       children: <Widget>[
         ListTile(
+          onTap: () {
+            Navigator.pushNamed(context, '/${item.id}');
+          },
           title: Text(item.title),
           subtitle: Text('${item.score} points'),
           trailing: Column(
@@ -46,6 +49,7 @@ class NewsListTile extends StatelessWidget{
               Text('${item.descendants}'),
             ],
           ),
+        
         ),
         Divider(
           height: 8.0,
