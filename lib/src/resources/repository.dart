@@ -32,11 +32,13 @@ class Repository {
         break;
     }
 
-   caches.forEach((cache) => cache.addItem(item));
-//     for(var cache in caches) {
-//       if (cache != (source) as Cache)  //check for no double insert or add parameter conflictAlgorithm: ConflictAlgorithm.ignore in db.insert (news_db_provider.dart)
-//         cache.addItem(item);
-//     }
+  //  caches.forEach((cache) => cache.addItem(item));
+    for(var cache in caches) {
+      // print('cache type - ${cache.runtimeType}');
+      // print('source type - ${source.runtimeType}');
+      if (cache != source)  //check for no double insert or add parameter conflictAlgorithm: ConflictAlgorithm.ignore in db.insert (news_db_provider.dart)
+        cache.addItem(item);
+    }
     return item;
   }
 

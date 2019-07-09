@@ -10,7 +10,7 @@ class NewsDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Details'),),
-      body: Text('${itemId}'),
+      body: Text('id - $itemId'),
     );
   }
 }
